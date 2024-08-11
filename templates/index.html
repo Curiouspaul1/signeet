@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{url_for('static', filename='main.css')}}">
+</head>
+<body>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+        <ul class=flashes>
+        {% for message in messages %}
+        <li id="flash-msg">{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+    {% endwith %}
+    {% block body %}{% endblock %}
+    <div id="undo">
+        <span>Undo</span>
+        <img src="{{url_for('static', filename='undo.png')}}" alt="">
+    </div>
+    <div id="save">
+        <span>Save</span>
+        <img src="{{url_for('static', filename='save.svg')}}" alt="">
+    </div>
+    <div class="container">
+        <div class="contained-items">
+            <div id="signbox">
+                <div id="call-to-action">
+                    <p>
+                        Sign on <br> my Tee!!
+                    </p>
+                </div>
+                <p id="steps">
+                    <ul>
+                        <li>1. Enter & customize your signature in the field below ⬇️</li><br>
+                        <li>2. Click on any free area on the tee 👉 to add the typed signature</li>
+                    </ul>
+                </p>
+                <!-- <input type="text" placeholder=""> -->
+                <input type="text" placeholder="Write here .. " id="signature">
+                <select name="" id="font-style">
+                    <option id="placeholder" class="placeholder">Select a font style</option>
+                    <option value='"Permanent Marker", cursive'>Permanent Marker</option>
+                    <option value='"Playwrite HR", cursive'>Playwrite HR</option>
+                    <option value='"Great Vibes", cursive'>Great Vibes</option>
+                    <option value='"Caveat", cursive'>Caveat</option>
+                    <option value='"Playwrite PE", cursive'>Playwrite PE</option>
+                </select> <br>
+                <select name="" id="font-size">
+                    <option value="" class="placeholder">Select text size</option>
+                    <option value='1'>large</option>
+                    <option value='2'>larger</option>
+                    <option value='3'>smaller</option>
+                </select>
+
+                <div id="color-picker">
+                    <div class="color-circles" id="red"></div>
+                    <div class="color-circles" id="blue"></div>
+                    <div class="color-circles" id="green"></div>
+                    <div class="color-circles" id="purple"></div>
+                    <div class="color-circles" id="orange"></div>
+                </div>
+                <span style="color: #fff">Click any color circle to select your color of choice</span>
+            </div>
+            <div id="mockup">
+                <div id="img-wrapper">
+                    <img src="{{url_for('static', filename='tee.png')}}" alt="" id="tee-img">
+                    {%if signatures%}
+                        {% for sign in signatures %}
+                            <strong id={{sign.style_id}} class="dot" style="
+                            font-family:{{sign.font}};
+                            left:{{sign.left}};
+                            top:{{sign.top}};
+                            font-size:{{sign.fsize}};
+                            color={{sign.color}}"
+                            >
+                                {{sign.text}}
+                            </strong>
+                        {% endfor %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+<script src="{{url_for('static', filename='main.js')}}"></script>
+</body>
+</html>

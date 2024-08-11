@@ -1,0 +1,214 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Edu+AU+VIC+WA+NT+Hand:wght@400..700&family=Great+Vibes&family=Permanent+Marker&family=Playwrite+HR:wght@100..400&family=Playwrite+PE:wght@100..400&display=swap');
+
+*{
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+body {
+    background-image: url("bg1 (2).jpg");
+    display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	font-family: 'Montserrat', sans-serif;
+	height: 100vh;
+	margin: -20px 0 50px;
+}
+
+#flash-msg {
+    width: 100%;
+    background-color: #77a4ec;
+    color: #fff;
+    padding: 8px;
+}
+
+.container {
+    background-color: #fff;
+	border-radius: 10px;
+  	box-shadow: 0 14px 28px #00000040, 0 10px 10px #00000038;
+	position: relative;
+	overflow: hidden;
+	width: 1200px;
+	max-width: 100%;
+	min-height: 600px;
+}
+
+.contained-items {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    height: 100%;
+}
+
+#signbox {
+    display: flex;
+    flex-direction: column; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #AABD8C;
+    background: -webkit-linear-gradient(to right, #3e85f6, #4669f8);
+	background: linear-gradient(to right, #3e85f6, #4669f8);
+    height: 100%;
+}
+
+
+#signbox input{
+	background-color: #eee;
+	border: none;
+	padding: 12px 15px;
+	margin: 8px 0;
+	width: 70%;
+    border-radius:8px;
+}
+
+#steps {
+    margin-top: -10%;
+}
+
+#color-picker {
+    margin-top: 5%;
+    width: 40%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+}
+
+.color-circles {
+    width: 20px;
+    height: 20px;
+    border-radius: 80%;
+    border: 2px solid #fff;
+    margin-bottom: 20px;
+}
+
+.color-circles:hover {
+    cursor: pointer;
+}
+
+#color-picker #red {background-color: #FF416C;}
+#color-picker #green {background-color: #94FBAB;}
+#color-picker #blue {background-color: #2B4570;}
+#color-picker #purple {background-color: #BE3E82;}
+#color-picker #orange {background-color: #CC3F0C;}
+
+/* #signbox button {
+    padding-top: 20px;
+    padding-bottom: 20px;
+    width: 70%;
+    border-radius: 10px;
+    background-color: #AABD8C;
+} */
+
+#signbox label {display: inline;}
+
+#signbox select {
+    padding: 12px 15px 12px 15px;
+    background: none;
+    border-radius: 8px;
+    width: 70%;
+}
+
+/* #signbox :not(:last-child)
+{
+    margin-bottom: 2%;
+} */
+
+#img-wrapper img {
+    position: relative;
+    left: -15%;
+}
+
+
+#signbox #call-to-action {      
+    font-family: "Permanent Marker", cursive;
+    font-size: 3rem;
+    color: #fff;
+}
+
+#tee-img {z-index: -1;}
+
+#img-wrapper {
+    position: relative;
+    z-index: 2;
+}
+
+#img-wrapper:hover{
+    cursor:pointer;
+}
+
+.dot {
+    position: absolute;
+    z-index: -1;
+}
+
+input:focus {outline: none;}
+
+
+#signbox ul {
+    list-style-type: disc;
+}
+
+li {
+    list-style-type: circle;
+    color: #fff;
+    font-weight: 500;
+    font-family: "Montserrat", cursive;
+}
+
+#undo {
+    position: absolute;
+    top: 10%;
+    left: 80%;
+}
+
+#undo img 
+{
+    width: 30px;
+    height: 30px;
+}
+
+#undo:hover {cursor: pointer;}
+
+
+#save {
+    position: absolute;
+    top: 10%;
+    left: 10%;
+}
+#save img 
+{
+    width: 30px;
+    height: 30px;
+}
+
+#save:hover {cursor: pointer;}
+
+.placeholder {
+    color: gray;
+    font-style: italic;
+}
+/*
+ #mockup {
+    position: absolute;
+    top: 10%;
+    left: 55%;
+} 
+
+#mockup {
+    margin-top: 10%;
+    height: 100%;
+    background-color: #3E6990;
+}
+
+#mockup #img-wrapper{
+    width: 500px;
+    border: 5px solid #3E6990;
+    border-radius: 8px;
+    height: 500px;
+}
+
+#img-wrapper img {
+    position: relative;
+    left: -12%;
+} */
