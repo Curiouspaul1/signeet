@@ -37,7 +37,7 @@ class Signatures(db.Model):
     color = db.Column(db.String)
     text = db.Column(db.String)
     font = db.Column(db.String)
-    fisze = db.Column(db.String)
+    fsize = db.Column(db.String)
 
 
 @app.get('/')
@@ -53,6 +53,7 @@ def save():
         return redirect(url_for('index'))
 
     data = request.get_json(force=True)
+    print(data)
     newSig = Signatures(**data)
     db.session.add(newSig)
 

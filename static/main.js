@@ -7,7 +7,6 @@ const save = document.getElementById('save');
 const fsize = document.getElementById('font-size');
 
 font.addEventListener('change', () => {
-    console.log(font.querySelector('#placeholder'));
     font.querySelector('#placeholder').classList.remove('placeholder');
 });
 
@@ -40,8 +39,6 @@ colorPicker.addEventListener('click', (event)=>{
 
 function checkSessionCookieExists() {
     const cookies = document.cookie.split(';');
-    console.log(cookies);
-    console.log(document.cookie);
     for (let i = 0; i < cookies.length; i++) {
         const cookie = cookies[i].trim();
         console.log(cookie);
@@ -53,13 +50,11 @@ function checkSessionCookieExists() {
 }
 
 image.addEventListener('click', (event) => {
-    console.log(event.target);
 
     if (signature.value === null || signature.value === "") {
         alert("Please type something before selecting an area");
         return;
     }
-    console.log(signature.value);
     const x = event.offsetX;
     const y = event.offsetY;
 
@@ -67,10 +62,13 @@ image.addEventListener('click', (event) => {
     dot.id = 'dot';
     dot.innerText = signature.value;
     dot.style.fontFamily = font.value;
-    console.log(fsize.value);
-    dot.style.fontSize = fsizes[fsize.value];
 
-    console.log(font.value, signature.value);
+    if (fsize.value !== "") {
+        dot.style.fontSize = fsizes[fsize.value];
+    }
+    else {
+        dot.style.fontSize = '16px';
+    }
 
     //   image
     dot.classList.add('dot');
@@ -81,14 +79,14 @@ image.addEventListener('click', (event) => {
         dot.style.color = color;
     }
 
-    // image.parentNode.appendChild(dot);
-    image.appendChild(dot);
 
     font.addEventListener('change', () => {
         dot.style.fontFamily = font.value;
+        data['font'] = font.value;
     });
     fsize.addEventListener('change', () => {
         dot.style.fontSize = fsizes[fsize.value];
+        data['fsize'] = fsizes[fsize.value];
     });
     
     colorPicker.addEventListener('click', (event)=>{
@@ -98,15 +96,25 @@ image.addEventListener('click', (event) => {
             color = colorMap[color];
             dot.style.color = color;
             // event.target.style.border = '#333 solid 2px';
+            data['color'] = color;
         }
     });
+
+    // image.parentNode.appendChild(dot);
+    console.log(dot);
+    image.appendChild(dot);
 });
 
 
 let undo_count = 0;
 
 undo.addEventListener('click', ()=> {
-    console.log(image.lastChild);
+
+    if (checkSessionCookieExists())
+    {
+        alert("Nothing else to undo");
+        return;
+    }
 
     if (image.lastChild != null && image.lastChild.classList != null && image.lastChild.classList.contains('dot')) { 
         if (undo_count != 1)
@@ -163,8 +171,10 @@ const callback = (mutationList, observer) => {
             font: node.style.fontFamily,
             color: node.style.color,
             top: node.style.top,
-            left: node.style.left
+            left: node.style.left,
+            fsize: node.style.fontSize
         };
+        console.log(data);
     } else if (mutation.type === "attributes") {
       console.log(`The ${mutation.attributeName} attribute was modified.`);
     }
@@ -197,6 +207,7 @@ save.addEventListener('click', () => {
         .catch(error => {
             console.error('Error:', error);
         });
+        alert('Saved successfully! Thanks for signing👍😎');
     }
     else {
         console.log('running this');
